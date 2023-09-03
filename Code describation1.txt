@@ -1,0 +1,39 @@
+data is a Pandas DataFrame that contains partitions of text and their corresponding labels from multiple books in the Gutenberg corpus. Each row represents a partition, and the columns are "partitions" and "label".
+
+It downloads the NLTK punkt tokenizer by calling nltk.download('punkt'). This tokenizer is used for tokenizing text into individual words or sentences.
+
+It sets the variable en_stops to a set of English stopwords from the NLTK stopwords corpus.
+
+The code downloads the Gutenberg corpus from NLTK by calling nltk.download('gutenberg'). The Gutenberg corpus contains a collection of literary works.
+
+It retrieves the file IDs of the texts in the Gutenberg corpus by calling gutenberg.fileids() and prints them.
+
+The code imports the gutenberg corpus from NLTK once again.
+
+It assigns the file IDs of the Gutenberg corpus to the listBooks variable and prints the list.
+
+It retrieves the raw text of a specific book from the Gutenberg corpus using the nltk.corpus.gutenberg.raw() function and assigns it to the book variable.
+
+The code tokenizes the book using a regular expression pattern with regexp_tokenize from NLTK, which splits the text into words of length 2 or more. The resulting tokens are assigned to the toknize_book variable.
+
+It calculates the length of toknize_book using the len() function.
+
+The code uses regular expressions (re.findall()) to find words of length 2 or more followed by a whitespace or a period (.) in the book. The matches are returned as a list.
+
+The code defines a function named read_book that takes a name parameter (file ID) and performs the following steps:
+
+Reads the raw text of the book using nltk.corpus.gutenberg.raw().
+Tokenizes the book using regexp_tokenize with the same regular expression pattern as before.
+Creates an empty list named list_of_part.
+Iterates 200 times, generating a random starting position within the range of the tokenized book and selecting 100 tokens from that position. These 100 tokens are joined with spaces to form a partition of text.
+Appends the partition and the label (obtained by removing the ".txt" extension from the name) to list_of_part as a dictionary.
+Converts list_of_part into a Pandas DataFrame with two columns: "partitions" and "label".
+Returns the DataFrame.
+The code creates an empty DataFrame named data.
+
+It defines an empty DataFrame named df1.
+
+The code iterates over each name in listBooks (file IDs of the Gutenberg corpus) and performs the following steps:
+
+Calls the read_book function with name as the parameter, which returns a DataFrame.
+Appends the DataFrame df1 to data using the append() method with ignore_index=True to maintain continuous index values.
